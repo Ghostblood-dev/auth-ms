@@ -13,5 +13,5 @@
 2. Create env based in env.template
 3. Execute command
 ```
-docker compose -f docker-compose.prod.yml build
+docker build -f dockerfile.prod -t auth-ms .
 ```

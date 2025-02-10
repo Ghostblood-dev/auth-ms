@@ -1,5 +1,5 @@
 # Dependencias
-FROM node:21-alpine3.19 as deps
+FROM node:21-alpine3.19 AS deps
 
 WORKDIR /usr/src/app
 
@@ -9,7 +9,7 @@ COPY package-lock.json ./
 RUN npm install
 
 # Builder - Construye la aplicacion
-FROM node:21-alpine3.19 as build
+FROM node:21-alpine3.19 AS build
 
 WORKDIR /usr/src/app
 
@@ -27,7 +27,7 @@ RUN npx prisma generate
 
 
 # Crear la imagen final del docker
-FROM node:21-alpine3.19 as prod
+FROM node:21-alpine3.19 AS prod
 
 COPY --from=build /usr/src/app/node_modules ./node_modules
 COPY --from=build /usr/src/app/dist ./dist
